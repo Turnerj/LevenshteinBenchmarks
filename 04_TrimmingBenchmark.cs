@@ -16,8 +16,6 @@ namespace LevenshteinBenchmarks
 			{
 				AddJob(Job.Default
 					.WithRuntime(CoreRuntime.Core50));
-
-				AddDiagnoser(MemoryDiagnoser.Default);
 			}
 		}
 
