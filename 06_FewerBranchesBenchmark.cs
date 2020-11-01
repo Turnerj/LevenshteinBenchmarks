@@ -18,6 +18,7 @@ namespace LevenshteinBenchmarks
 					.WithRuntime(CoreRuntime.Core50));
 
 				AddHardwareCounters(HardwareCounter.BranchInstructions, HardwareCounter.BranchMispredictions);
+				AddDiagnoser(new DisassemblyDiagnoser(new DisassemblyDiagnoserConfig(maxDepth: 1, printSource: true)));
 			}
 		}
 
