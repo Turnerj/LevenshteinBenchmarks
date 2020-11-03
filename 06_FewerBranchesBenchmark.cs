@@ -7,21 +7,9 @@ using LevenshteinBenchmarks.Implementations;
 
 namespace LevenshteinBenchmarks
 {
-	[Config(typeof(BaseConfig))]
+	[Config(typeof(BranchPerfConfig))]
 	public class FewerBranchesBenchmark
 	{
-		public class BaseConfig : ManualConfig
-		{
-			public BaseConfig()
-			{
-				AddJob(Job.Default
-					.WithRuntime(CoreRuntime.Core50));
-
-				AddHardwareCounters(HardwareCounter.BranchInstructions, HardwareCounter.BranchMispredictions);
-				AddDiagnoser(new DisassemblyDiagnoser(new DisassemblyDiagnoserConfig(maxDepth: 1, printSource: true)));
-			}
-		}
-
 		[Params("PredictablyEqual", "PredictablyNotEqual", "Random")]
 		public string TestCase;
 

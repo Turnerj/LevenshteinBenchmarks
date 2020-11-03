@@ -3,6 +3,7 @@ using LevenshteinBenchmarks.Implementations;
 
 namespace LevenshteinBenchmarks
 {
+	[Config(typeof(MemoryConfig))]
 	public class DataStructureBenchmark : BaselineBenchmarks
 	{
 		[Benchmark(Baseline = true)]

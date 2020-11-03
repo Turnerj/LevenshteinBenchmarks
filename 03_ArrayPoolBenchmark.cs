@@ -3,6 +3,7 @@ using LevenshteinBenchmarks.Implementations;
 
 namespace LevenshteinBenchmarks
 {
+	[Config(typeof(MemoryConfig))]
 	public class ArrayPoolBenchmark : BaselineBenchmarks
 	{
 		[Benchmark(Baseline = true)]
