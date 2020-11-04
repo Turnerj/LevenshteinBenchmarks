@@ -28,6 +28,16 @@ namespace LevenshteinBenchmarks.Implementations
 			var sourceLength = sourceEnd - startIndex;
 			var targetLength = targetEnd - startIndex;
 
+			if (sourceLength == 0)
+			{
+				return targetLength;
+			}
+
+			if (targetLength == 0)
+			{
+				return sourceLength;
+			}
+
 			var sourceSpan = source.AsSpan().Slice(startIndex, sourceLength);
 			var targetSpan = target.AsSpan().Slice(startIndex, targetLength);
 
