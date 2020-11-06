@@ -38,4 +38,16 @@ namespace LevenshteinBenchmarks
 			AddDiagnoser(new DisassemblyDiagnoser(new DisassemblyDiagnoserConfig(maxDepth: 1, printSource: true)));
 		}
 	}
+
+	public class MemoryAndCodeSizeConfig : ManualConfig
+	{
+		public MemoryAndCodeSizeConfig()
+		{
+			AddJob(Job.Default
+				.WithRuntime(CoreRuntime.Core50));
+
+			AddDiagnoser(MemoryDiagnoser.Default);
+			AddDiagnoser(new DisassemblyDiagnoser(new DisassemblyDiagnoserConfig(maxDepth: 1, printSource: true)));
+		}
+	}
 }
