@@ -41,9 +41,9 @@ namespace LevenshteinBenchmarks
 
 
 		[Benchmark(Baseline = true)]
-		public int NoTrimming() => LevenshteinArrayPool.GetDistance(Source, Target);
+		public int PreviousBest() => LevenshteinArrayPool.GetDistance(Source, Target);
 
 		[Benchmark]
-		public int Trimming() => LevenshteinTrimming.GetDistance(Source, Target);
+		public int WithTrimming() => LevenshteinTrimming.GetDistance(Source, Target);
 	}
 }
