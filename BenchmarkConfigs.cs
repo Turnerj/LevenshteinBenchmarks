@@ -5,6 +5,15 @@ using BenchmarkDotNet.Jobs;
 
 namespace LevenshteinBenchmarks
 {
+	public class StandardConfig : ManualConfig
+	{
+		public StandardConfig()
+		{
+			AddJob(Job.Default
+				.WithRuntime(CoreRuntime.Core50));
+		}
+	}
+
 	public class MemoryConfig : ManualConfig
 	{
 		public MemoryConfig()
@@ -13,6 +22,17 @@ namespace LevenshteinBenchmarks
 				.WithRuntime(CoreRuntime.Core50));
 
 			AddDiagnoser(MemoryDiagnoser.Default);
+		}
+	}
+
+	public class BranchPerfOnlyConfig : ManualConfig
+	{
+		public BranchPerfOnlyConfig()
+		{
+			AddJob(Job.Default
+				.WithRuntime(CoreRuntime.Core50));
+
+			AddHardwareCounters(HardwareCounter.BranchInstructions, HardwareCounter.BranchMispredictions);
 		}
 	}
 

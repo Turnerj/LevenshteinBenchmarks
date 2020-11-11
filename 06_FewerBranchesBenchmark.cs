@@ -7,7 +7,7 @@ using LevenshteinBenchmarks.Implementations;
 
 namespace LevenshteinBenchmarks
 {
-	[Config(typeof(BranchPerfConfig))]
+	[Config(typeof(BranchPerfOnlyConfig))]
 	public class FewerBranchesBenchmark
 	{
 		[Params("PredictablyEqual", "PredictablyNotEqual", "Random")]
@@ -37,7 +37,7 @@ namespace LevenshteinBenchmarks
 		}
 
 		[Benchmark(Baseline = true)]
-		public int Previous() => LevenshteinTrimming.GetDistance(Source, Target);
+		public int PreviousBest() => LevenshteinTrimming.GetDistance(Source, Target);
 
 		[Benchmark]
 		public int UpdatedBranching() => LevenshteinFewerBranches.GetDistance(Source, Target);

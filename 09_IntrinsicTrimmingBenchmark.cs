@@ -21,7 +21,7 @@ namespace LevenshteinBenchmarks
 
 
 		[Benchmark(Baseline = true)]
-		public int NormalTrimming() => LevenshteinPointersEverywhere.GetDistance(Source, Target);
+		public int PreviousBest() => LevenshteinPointersEverywhere.GetDistance(Source, Target);
 
 		[Benchmark]
 		public int IntrinsicTrimming() => LevenshteinIntrinsicTrimming.GetDistance(Source, Target);

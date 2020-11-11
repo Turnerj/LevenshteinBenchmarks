@@ -6,18 +6,9 @@ using LevenshteinBenchmarks.Implementations;
 
 namespace LevenshteinBenchmarks
 {
-	[Config(typeof(BaseConfig))]
+	[Config(typeof(StandardConfig))]
 	public class TrimmingBenchmark
 	{
-		public class BaseConfig : ManualConfig
-		{
-			public BaseConfig()
-			{
-				AddJob(Job.Default
-					.WithRuntime(CoreRuntime.Core50));
-			}
-		}
-
 		[ParamsAllValues]
 		public bool HasCommonStartAndEnd;
 
