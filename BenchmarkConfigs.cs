@@ -25,17 +25,6 @@ namespace LevenshteinBenchmarks
 		}
 	}
 
-	public class BranchPerfOnlyConfig : ManualConfig
-	{
-		public BranchPerfOnlyConfig()
-		{
-			AddJob(Job.Default
-				.WithRuntime(CoreRuntime.Core50));
-
-			AddHardwareCounters(HardwareCounter.BranchInstructions, HardwareCounter.BranchMispredictions);
-		}
-	}
-
 	public class BranchPerfConfig : ManualConfig
 	{
 		public BranchPerfConfig()

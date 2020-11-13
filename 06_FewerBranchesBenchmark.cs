@@ -1,13 +1,9 @@
 ﻿using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Configs;
-using BenchmarkDotNet.Diagnosers;
-using BenchmarkDotNet.Environments;
-using BenchmarkDotNet.Jobs;
 using LevenshteinBenchmarks.Implementations;
 
 namespace LevenshteinBenchmarks
 {
-	[Config(typeof(BranchPerfOnlyConfig))]
+	[Config(typeof(BranchPerfConfig))]
 	public class FewerBranchesBenchmark
 	{
 		[Params("PredictablyEqual", "PredictablyNotEqual", "Random")]
