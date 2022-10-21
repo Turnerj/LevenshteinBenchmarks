@@ -41,7 +41,7 @@ namespace LevenshteinBenchmarks.Implementations
 
 			for (var columnIndex = 0; columnIndex < targetSpan.Length; columnIndex++)
 			{
-				previousRow[columnIndex] = columnIndex;
+				previousRow[columnIndex] = columnIndex + 1;
 			}
 
 			for (var rowIndex = 0; rowIndex < sourceSpan.Length; rowIndex++)

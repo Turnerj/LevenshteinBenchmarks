@@ -10,7 +10,7 @@ namespace LevenshteinBenchmarks.Implementations
 
 			for (var columnIndex = 0; columnIndex < target.Length; columnIndex++)
 			{
-				previousRow[columnIndex] = columnIndex;
+				previousRow[columnIndex] = columnIndex + 1;
 			}
 
 			for (var rowIndex = 0; rowIndex < source.Length; rowIndex++)
