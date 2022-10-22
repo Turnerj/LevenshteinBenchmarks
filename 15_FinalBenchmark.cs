@@ -10,5 +10,7 @@ namespace LevenshteinBenchmarks
 		public int Baseline() => LevenshteinBaseline.GetDistance(Source, Target);
 		[Benchmark]
 		public int MultiThreaded() => LevenshteinMultiThreaded.GetDistance(Source, Target);
+		[Benchmark]
+		public int IntrinsicRevisited() => LevenshteinIntrinsicCalculationRevisited.GetDistance(Source, Target);
 	}
 }
