@@ -13,7 +13,7 @@ public abstract class CommonConfig : ManualConfig
 		AddJob(Job.Default
 			.WithRuntime(CoreRuntime.Core60));
 
-		HideColumns(Column.RatioSD);
+		HideColumns(Column.RatioSD, Column.AllocRatio);
 	}
 }
 
