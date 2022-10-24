@@ -45,11 +45,11 @@ namespace LevenshteinBenchmarks.Implementations
 
 			fixed (int* previousRowPtr = previousRow)
 			fixed (char* sourcePtr = sourceSpan)
-			fixed (char* targetPtr = target)
+			fixed (char* targetPtr = targetSpan)
 			{
 				for (var columnIndex = 0; columnIndex < targetLength; columnIndex++)
 				{
-					previousRowPtr[columnIndex] = columnIndex;
+					previousRowPtr[columnIndex] = columnIndex + 1;
 				}
 
 				for (var rowIndex = 0; rowIndex < sourceLength; rowIndex++)

@@ -6,7 +6,7 @@ using System.Runtime.Intrinsics.X86;
 
 namespace LevenshteinBenchmarks.Implementations
 {
-	static class LevenshteinIntrinsicTrimming
+	static class LevenshteinIntrinsicDataInitialization
 	{
 		public unsafe static int GetDistance(string source, string target)
 		{
@@ -104,9 +104,40 @@ namespace LevenshteinBenchmarks.Implementations
 			fixed (char* sourcePtr = sourceSpan)
 			fixed (char* targetPtr = targetSpan)
 			{
-				for (var columnIndex = 0; columnIndex < targetLength; columnIndex++)
+				var dataInitValue = 1;
+				var dataInitLengthToProcess = targetLength;
+				var dataInitLocalRowPtr = previousRowPtr;
+				if (Avx2.IsSupported)
 				{
-					previousRowPtr[columnIndex] = columnIndex + 1;
+					var shiftVector256 = Vector256.Create(Vector256<int>.Count);
+					var lastVector256 = Vector256.Create(1, 2, 3, 4, 5, 6, 7, 8);
+					while (dataInitLengthToProcess >= Vector256<int>.Count)
+					{
+						Avx.Store(dataInitLocalRowPtr, lastVector256);
+						lastVector256 = Avx2.Add(lastVector256, shiftVector256);
+						dataInitLocalRowPtr += Vector256<int>.Count;
+						dataInitLengthToProcess -= Vector256<int>.Count;
+					}
+
+					if (dataInitLengthToProcess >= Vector128<int>.Count)
+					{
+						Sse2.Store(dataInitLocalRowPtr, lastVector256.GetLower());
+						dataInitLocalRowPtr += Vector128<int>.Count;
+						dataInitLengthToProcess -= Vector128<int>.Count;
+						dataInitValue = lastVector256.GetElement(Vector128<int>.Count);
+					}
+					else
+					{
+						dataInitValue = lastVector256.GetElement(0);
+					}
+				}
+
+				while (dataInitLengthToProcess > 0)
+				{
+					dataInitLengthToProcess--;
+					*dataInitLocalRowPtr = dataInitValue;
+					dataInitValue++;
+					dataInitLocalRowPtr++;
 				}
 
 				for (var rowIndex = 0; rowIndex < sourceLength; rowIndex++)

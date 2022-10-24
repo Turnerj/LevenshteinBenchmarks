@@ -124,7 +124,7 @@ namespace LevenshteinBenchmarks.Implementations
 
 			fixed (int* previousRowPtr = previousRow)
 			fixed (char* sourcePtr = sourceSpan)
-			fixed (char* targetPtr = target)
+			fixed (char* targetPtr = targetSpan)
 			{
 				var maximumNumberOfWorkers = Environment.ProcessorCount;
 				var numberOfWorkers = targetLength / MINIMUM_CHARACTERS_PER_THREAD;
@@ -227,9 +227,9 @@ namespace LevenshteinBenchmarks.Implementations
 
 			fixed (int* previousRowPtr = previousRow)
 			{
-				for (var localColumnIndex = 1; localColumnIndex <= targetRegionLength; localColumnIndex++)
+				for (var localColumnIndex = 0; localColumnIndex < targetRegionLength; localColumnIndex++)
 				{
-					previousRowPtr[localColumnIndex] = columnIndex + localColumnIndex;
+					previousRowPtr[localColumnIndex] = columnIndex + localColumnIndex + 1;
 				}
 
 				ref var selfWorkerRowCount = ref rowCountPtr[workerIndex];

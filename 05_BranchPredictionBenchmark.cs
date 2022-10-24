@@ -1,8 +1,5 @@
 ﻿using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Diagnosers;
-using BenchmarkDotNet.Environments;
-using BenchmarkDotNet.Jobs;
 using LevenshteinBenchmarks.Implementations;
 
 namespace LevenshteinBenchmarks
@@ -10,13 +7,10 @@ namespace LevenshteinBenchmarks
 	[Config(typeof(BaseConfig))]
 	public class BranchPredictionBenchmark
 	{
-		public class BaseConfig : ManualConfig
+		public class BaseConfig : CommonConfig
 		{
-			public BaseConfig()
+			public BaseConfig() : base()
 			{
-				AddJob(Job.Default
-					.WithRuntime(CoreRuntime.Core50));
-
 				AddHardwareCounters(HardwareCounter.BranchInstructions, HardwareCounter.BranchMispredictions);
 			}
 		}
